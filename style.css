@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+}
+
+.container {
+    margin: 0 15px;
+}
+
+.form-box {
+    width: 100vh;
+    max-width: 550px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 30px;
+    box-shadow: 0 20px 40px 10px rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+.form-box.active {
+    display: block;
+}
+
+h2 {
+    font-size: 34px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #86868B;
+    outline: none;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    padding: 12px;
+    padding-right: 38px;
+    background:
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 640'><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path fill='%2386868B' d='M297.4 438.6C309.9 451.1 330.2 451.1 342.7 438.6L502.7 278.6C515.2 266.1 515.2 245.8 502.7 233.3C490.2 220.8 469.9 220.8 457.4 233.3L320 370.7L182.6 233.4C170.1 220.9 149.8 220.9 137.3 233.4C124.8 245.9 124.8 266.2 137.3 278.7L297.3 438.7z'/></svg>")
+        no-repeat right 12px center;
+    background-size: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 1px solid #86868B;
+    font-size: 16px;
+    color: #333;
+}
+
+input:focus {
+    border: 2px solid #0071E3;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #0071E3;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 500;
+    margin-bottom: 20px;
+    transition: 0.5s;
+}
+
+button:hover {
+    background: #0D78E4;
+}
+
+p {
+    font-size: 14.5px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+p a {
+    text-decoration: none;
+    color: #0071E3;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+.field {
+    position: relative; 
+    display: block;
+    line-height: 1;
+}
+
+.field input,
+.field select {
+    position: relative;
+    z-index: 1;
+    padding-top: 18px;
+}
+
+
+.field label {
+  position: absolute;
+  left: 12px;
+  top: 38%;
+  transform: translateY(-50%) scale(1);
+  transform-origin: left center;
+  pointer-events: none;
+  color: #86868B;
+  font-size: 16px;
+  transition: transform .18s ease, color .18s ease;
+  background: #fff;
+  padding: 0 4px;
+  z-index: 2;
+}
+
+.field input:focus + label,
+.field input:not(:placeholder-shown) + label {
+  transform: translateY(-160%) scale(0.80);
+}
+
+.field select:valid + label {
+  transform: translateY(-160%) scale(0.80);
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+}
+
+.row .field {
+    flex: 1;
+}
+
+/* Notifiche */
+
+.toast-notification {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-100px); /* Parte nascosto in alto */
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);          
+    -webkit-backdrop-filter: blur(12px);
+    padding: 12px 24px;
+    border-radius: 50px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15),
+                0 0 0 1px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 2000;
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); /* Effetto rimbalzo */
+    font-size: 14px;
+    font-weight: 500;
+    color: #1d1d1f;
+}
+
+.toast-notification.show {
+    transform: translateX(-50%) translateY(0); /* Scende in posizione */
+    opacity: 1;
+}
+
+.toast-icon.success {
+    width: 20px;
+    height: 20px;
+    background: #34C759;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+.toast-icon.success::after {
+    content: "✓";
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.toast-icon.error {
+    width: 20px;
+    height: 20px;
+    background: #FF3B30;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+.toast-icon.error::after {
+    content: "!";
+    font-weight: bold;
+}
+
+.toast-icon.info {
+    width: 20px;
+    height: 20px;
+    background: #007AFF; /* Blu Apple */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.toast-icon.info::after {
+    content: "i";
+    font-weight: bold;
+    font-family: monospace;
+}
